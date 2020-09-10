@@ -35,11 +35,42 @@ class App extends Component {
 
       // your code here!
 
-      // Remember: console.log is your friend :)
+      //need to know how to split string at vowel
+      //if first letter is y it's a consonant
+      const translate = (currentWord) => {
+        if (currentWord[0] === "y") {
+          return currentWord.split("").slice(1).join("") + "-yay"
+        }
+        //if first letter is a vowel add -way
+        else if (currentWord[0] === "a" || currentWord[0] === "e" || currentWord[0] === "i" || currentWord[0] === "o" || currentWord[0] === "u" || currentWord[0] === "y") {
+          return currentWord + "-way"
+        }
+        //u does not count as a vowel if immediately preceded by a q
+        // else if (currentWord[i] == "u" && currentWord[i - 1] == "q") {"u" = consonant}
+        //everything else bisect word at first vowel word2 + word1 + -ay
+        //look for first vowel in word
+        //chop word so vowel begins word2
+        //then Pig Latin it
+        else {
+          const firstVowelFinder = (currentWord) => {
+            let vowelArray = ["a", "e", "i", "o", "u"]
+            let firstVowelIndex = []
+            for (var i = 0; i < vowelArray.length; i++) {
+              return firstVowelIndex.push(currentWord.indexOf(i))
+            }
+            console.log(firstVowelIndex);
+          }
 
+          let word2Start = firstVowelFinder(currentWord)
+          // let word2Start = currentWord.split("").indexOf("a" || "e" || "i" || "o" || "u" || "y")
+          return currentWord.split("").slice(word2Start).join("") + "-" + currentWord.split("").slice(0, word2Start).join("") + "ay"
+          }
+      }
+      // Remember: console.log is your friend :)
+      let translatedWord = translate(currentWord)
 
       // ACTION ITEM: change the value of currentWord in the push method to the name of whatever variable you made containing your Pig Latin'd word
-      return translatedWordsArray.push(currentWord)
+      return translatedWordsArray.push(translatedWord)
     })
 
 
