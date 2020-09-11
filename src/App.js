@@ -52,18 +52,35 @@ class App extends Component {
         //chop word so vowel begins word2
         //then Pig Latin it
         else {
-          const firstVowelFinder = (currentWord) => {
-            let vowelArray = ["a", "e", "i", "o", "u"]
-            let firstVowelIndex = []
-            for (var i = 0; i < vowelArray.length; i++) {
-              return firstVowelIndex.push(currentWord.indexOf(i))
-            }
-            console.log(firstVowelIndex);
-          }
+        //   const firstVowelFinder = (currentWord) => {
+        //     let vowelArray = ["a", "e", "i", "o", "u", "y"]
+        //     var firstVowelIndex = []
+        //       console.log(vowelArray[0]);
+        //       console.log(firstVowelIndex);
+        //     for (var i = 0; i < vowelArray.length; i++) {
+        //       console.log(currentWord.indexOf(vowelArray));
+        //           firstVowelIndex.push(currentWord.indexOf(vowelArray[i]))
+        //       /*return*/
+        //     }
+        //     console.log(firstVowelIndex);
+        //   }
 
-          let word2Start = firstVowelFinder(currentWord)
-          // let word2Start = currentWord.split("").indexOf("a" || "e" || "i" || "o" || "u" || "y")
-          return currentWord.split("").slice(word2Start).join("") + "-" + currentWord.split("").slice(0, word2Start).join("") + "ay"
+          // let word2Start = firstVowelFinder(currentWord)
+
+          let firstA = currentWord.split("").indexOf("a")
+          let firstE = currentWord.split("").indexOf("e")
+          let firstI = currentWord.split("").indexOf("i")
+          let firstO = currentWord.split("").indexOf("o")
+          let firstU = currentWord.split("").indexOf("u")
+          let firstY = currentWord.split("").indexOf("y")
+
+          var newVowelArray = [firstA, firstE, firstI, firstO, firstU, firstY]
+          var positiveIndexes = newVowelArray.filter(value => value !== -1)
+            let word2Start = Math.min(...positiveIndexes)
+console.log(word2Start);
+//.filter out -1 and then return .min for lowest number
+
+          return currentWord.slice(word2Start) + "-" + currentWord.slice(0, word2Start) + "ay"
           }
       }
       // Remember: console.log is your friend :)
